@@ -1,6 +1,7 @@
 package com.jpastudy.mybook.domain.book.domain;
 
 import com.jpastudy.mybook.domain.review.domain.Review;
+import com.jpastudy.mybook.global.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
-public class Book {
+public class Book extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +31,6 @@ public class Book {
 
     @Lob
     private String description;
-
-    private Integer score;
 
     @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
