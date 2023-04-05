@@ -12,14 +12,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReviewDto {
 
-    //private Long id;
+    private Long id;
     private String content;
     private Long memberId;
     private Long bookId;
     private Integer score;
 
     @Builder
-    public ReviewDto(Long memberId, Long bookId, String content, Integer score){
+    public ReviewDto(Long id, Long memberId, Long bookId, String content, Integer score){
+        this.id = id;
         this.memberId = memberId;
         this.bookId = bookId;
         this.content = content;

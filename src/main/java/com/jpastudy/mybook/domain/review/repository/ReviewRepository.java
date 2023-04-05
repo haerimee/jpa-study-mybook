@@ -27,8 +27,12 @@ public class ReviewRepository {
     }
 
     public List<ReviewDto> findAllReviewsByMemberId(Long memberId){
-        String jpql = "select r From Review r join r.member m where m.id = :member_id";
-        Query query = em.createQuery(jpql);
+      String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewDto(r.id, m.id, b.id, r.content, r.score)"
+                + " from Review r"
+                + " join r.member m"
+                + " join r.book b"
+                + " where m.id = :member_id";
+        Query query = em.createQuery(jpql, ReviewDto.class);
         query.setParameter("member_id", memberId);
 
         return query.getResultList();
