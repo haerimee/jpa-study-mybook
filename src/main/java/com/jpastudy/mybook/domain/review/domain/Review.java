@@ -4,10 +4,11 @@ import com.jpastudy.mybook.domain.book.domain.Book;
 import com.jpastudy.mybook.domain.member.domain.Member;
 import com.jpastudy.mybook.global.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Review extends BaseTimeEntity {
 
     @Id
@@ -19,13 +20,22 @@ public class Review extends BaseTimeEntity {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id",foreignKey = @ForeignKey(name = "fk_review_to_member"))
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id",foreignKey = @ForeignKey(name = "fk_review_to_book"))
     private Book book;
 
     private Integer score;
+
+    @Builder
+    public Review(Member member, Book book, String content, Integer score){
+        this.member = member;
+        this.book = book;
+        this.content = content;
+        this.score = score;
+    }
+
 }
