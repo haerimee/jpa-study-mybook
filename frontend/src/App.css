@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&family=handleBooksSearch+Sung&display=swap');
+
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Nanum Gothic';
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 650px) {
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/*  MyButton */
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+  font-family: "Nanum Gothic";
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: black;
+}
+
+.MyButton_positive {
+  background-color: #64c964;
+  color: white;
+}
+
+.MyButton_negative {
+  background-color: #fd565f;
+  color: white;
+}
+
+/* HEADER */
+
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header>div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: "Nanum Gothic";
+  ;
+}
+
+/* BookList */
+.BookList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.BookList .menu_wrapper .right_col {
+  flex-grow: 1;
+}
+
+.BookList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+.BookList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Gothic";
+  font-size: 18px;
+}
+
+/* BookItem */
+.BookItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #e2e2e2;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.BookItem .book_img_wrapper {
+  cursor: pointer;
+  min-width: 100px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.BookItem .emotion_img_wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.BookItem .emotion_img_wrapper_1 {
+  background-color: #64c964;
+}
+
+.BookItem .emotion_img_wrapper_2 {
+  background-color: #9dd772;
+}
+
+.BookItem .emotion_img_wrapper_3 {
+  background-color: #fdce17;
+}
+
+.BookItem .emotion_img_wrapper_4 {
+  background-color: #fd8446;
+}
+
+.BookItem .emotion_img_wrapper_5 {
+  background-color: #fd565f;
+}
+
+.BookItem .emotion_img_wrapper img {
+  width: 50%;
+}
+
+.BookItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.BookItem .diary_date {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.BookItem .diary_content_preview {
+  font-size: 15px;
+  width: 450px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 25px;    /* 추가 */
+  height: 50px;        /* line-height x line */
+}
+
+.BookItem .btn_wrapper {
+  min-width: 70px;
+}
+
+/* ReviewEditor */
+.ReviewEditor {}
+
+.ReviewEditor section {
+  margin-bottom: 40px;
+}
+
+.ReviewEditor h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.ReviewEditor .input_date {
+  border: none;
+  border-radius: 5px;
+  background-color: #e2e2e2;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Gothic";
+  font-size: 15px;
+}
+
+.ReviewEditor .emotion_list_wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+}
+
+.ReviewEditor textarea {
+  font-family: "Nanum Gothic";
+  font-size: 15px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
+}
+
+.ReviewEditor .control_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* EmotionItem */
+.EmotionItem {
+  cursor: pointer;
+
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.EmotionItem img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.EmotionItem span {
+  font-size: 12px;
+}
+
+.EmotionItem_off {
+  background-color: #e2e2e2;
+}
+
+.EmotionItem_on_1 {
+  background-color: #64c964;
+  color: white;
+}
+
+.EmotionItem_on_2 {
+  background-color: #9dd772;
+  color: white;
+}
+
+.EmotionItem_on_3 {
+  background-color: #fdce17;
+  color: white;
+}
+
+.EmotionItem_on_4 {
+  background-color: #fd8446;
+  color: white;
+}
+
+.EmotionItem_on_5 {
+  background-color: #fd565f;
+  color: white;
+}
+
+/* Diary */
+.BookPage {}
+
+.BookPage section {
+  width: 100%;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.BookPage h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.BookPage p {
+  font-size: 15px;
+}
+
+.BookPage .book_img_wrapper img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.BookPage .diary_img_wrapper_1 {
+  background-color: #64c964;
+}
+
+.BookPage .diary_img_wrapper_2 {
+  background-color: #9dd772;
+}
+
+.BookPage .diary_img_wrapper_3 {
+  background-color: #fdce17;
+}
+
+.BookPage .diary_img_wrapper_4 {
+  background-color: #fd8446;
+}
+
+.BookPage .diary_img_wrapper_5 {
+  background-color: #fd565f;
+}
+
+.BookPage .emotion_descript {
+  font-size: 15px;
+  color: white;
+}
+
+.BookPage .book_info_wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.BookPage .book_info_wrapper .book_info {
+  display: flex;
+  align-items: center;
+}
+
+.BookPage .book_info_wrapper .book_info h4 {
+  margin-right: 10px;
+}
+
+.BookPage .book_content_wrapper {
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 5px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.BookPage .book_content_wrapper pre {
+  padding: 20px;
+  text-align: left;
+  font-size: 15px;
+  font-family: "Nanum Gothic";
+  font-weight: 400;
+  line-height: 2.5;
+  white-space: pre-wrap;
+}
+
+/* SearchBar */
+.SearchBar {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.SearchBar input {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  margin-right: 8px;
+  flex: 1;
+}
+
+.SearchBar button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}

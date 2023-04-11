@@ -2,10 +2,12 @@ package com.jpastudy.mybook.domain.review.service;
 
 import com.jpastudy.mybook.domain.book.domain.Book;
 import com.jpastudy.mybook.domain.book.repository.BookRepository;
+import com.jpastudy.mybook.domain.book.service.BookService;
 import com.jpastudy.mybook.domain.member.domain.Member;
 import com.jpastudy.mybook.domain.member.repository.MemberRepository;
 import com.jpastudy.mybook.domain.review.domain.Review;
 import com.jpastudy.mybook.domain.review.dto.ReviewDto;
+import com.jpastudy.mybook.domain.review.dto.ReviewSaveRequestDto;
 import com.jpastudy.mybook.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,17 +24,24 @@ public class ReviewService {
     private final BookRepository bookRepository;
     private final ReviewRepository reviewRepository;
 
-    public Long saveReview(ReviewDto reviewDto){
-        Member member = memberRepository.findById(reviewDto.getMemberId());
-        Book book = bookRepository.findByBookId(reviewDto.getBookId());
-        Review newReview = reviewDto.toEntity(member, book);
+    private final BookService bookService;
 
-        // 저장
+    public Long saveReview(ReviewSaveRequestDto reviewSaveRequestDto){
+        Member member = memberRepository.findById(reviewSaveRequestDto.getMemberId());
+        
+        // 책 먼저 저장
+        Long newBookId = bookService.saveBook(reviewSaveRequestDto.getBook());
+        Book book = bookRepository.findByBookId(newBookId);
+        
+        // 리뷰 저장
+        Review newReview = reviewSaveRequestDto.toEntity(member, book);
         reviewRepository.save(newReview);
+
         return newReview.getId();
     }
 
     public List<ReviewDto> findAllReviewsByMemberId(Long memberId){
         return reviewRepository.findAllReviewsByMemberId(memberId);
     }
+
 }

@@ -5,7 +5,6 @@ import com.jpastudy.mybook.domain.review.dto.ReviewDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +26,8 @@ public class ReviewRepository {
     }
 
     public List<ReviewDto> findAllReviewsByMemberId(Long memberId){
-      String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewDto(r.id, m.id, b.id, r.content, r.score)"
+      //String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewDto(r.id, m.id, b.id, r.content, r.score)"
+        String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewSearchDto(r.id, m.id, b.id, r.content, r.score, b.title, b.isbn, b.image)"
                 + " from Review r"
                 + " join r.member m"
                 + " join r.book b"
