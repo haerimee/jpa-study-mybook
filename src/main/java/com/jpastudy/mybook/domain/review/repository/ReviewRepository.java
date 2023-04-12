@@ -2,6 +2,7 @@ package com.jpastudy.mybook.domain.review.repository;
 
 import com.jpastudy.mybook.domain.review.domain.Review;
 import com.jpastudy.mybook.domain.review.dto.ReviewDto;
+import com.jpastudy.mybook.domain.review.dto.ReviewSearchDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -25,14 +26,14 @@ public class ReviewRepository {
         return em.find(Review.class, id);
     }
 
-    public List<ReviewDto> findAllReviewsByMemberId(Long memberId){
+    public List<ReviewSearchDto> findAllReviewsByMemberId(Long memberId){
       //String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewDto(r.id, m.id, b.id, r.content, r.score)"
         String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewSearchDto(r.id, m.id, b.id, r.content, r.score, b.title, b.isbn, b.image)"
                 + " from Review r"
                 + " join r.member m"
                 + " join r.book b"
                 + " where m.id = :member_id";
-        Query query = em.createQuery(jpql, ReviewDto.class);
+        Query query = em.createQuery(jpql, ReviewSearchDto.class);
         query.setParameter("member_id", memberId);
 
         return query.getResultList();

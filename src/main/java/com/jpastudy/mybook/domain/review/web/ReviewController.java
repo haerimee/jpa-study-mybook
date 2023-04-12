@@ -2,6 +2,7 @@ package com.jpastudy.mybook.domain.review.web;
 
 import com.jpastudy.mybook.domain.review.dto.ReviewDto;
 import com.jpastudy.mybook.domain.review.dto.ReviewSaveRequestDto;
+import com.jpastudy.mybook.domain.review.dto.ReviewSearchDto;
 import com.jpastudy.mybook.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class ReviewController {
     }
 
     @GetMapping(value = "/{memberId}")
-    public ResponseEntity<List<ReviewDto>> getReviewList(@PathVariable Long memberId){
-        List<ReviewDto> reviews = reviewService.findAllReviewsByMemberId(memberId);
+    public ResponseEntity<List<ReviewSearchDto>> getReviewList(@PathVariable Long memberId){
+        List<ReviewSearchDto> reviews = reviewService.findAllReviewsByMemberId(memberId);
         return ResponseEntity.ok(reviews);
     }
 

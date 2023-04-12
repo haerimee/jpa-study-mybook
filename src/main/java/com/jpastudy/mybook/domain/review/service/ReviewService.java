@@ -8,6 +8,7 @@ import com.jpastudy.mybook.domain.member.repository.MemberRepository;
 import com.jpastudy.mybook.domain.review.domain.Review;
 import com.jpastudy.mybook.domain.review.dto.ReviewDto;
 import com.jpastudy.mybook.domain.review.dto.ReviewSaveRequestDto;
+import com.jpastudy.mybook.domain.review.dto.ReviewSearchDto;
 import com.jpastudy.mybook.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class ReviewService {
         return newReview.getId();
     }
 
-    public List<ReviewDto> findAllReviewsByMemberId(Long memberId){
+    public List<ReviewSearchDto> findAllReviewsByMemberId(Long memberId){
         return reviewRepository.findAllReviewsByMemberId(memberId);
     }
 
