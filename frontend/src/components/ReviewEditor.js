@@ -60,7 +60,7 @@ const ReviewEditor = ({ isEdit, originData, bookInfo }) => {
     return (
         <div className="ReviewEditor">
             <MyHeader
-                headText={isEdit ? "기록 수정하기" : "기록 쓰기"}
+                headText={isEdit ? "기록 수정하기" : "기록 작성하기"}
                 leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
                 rightChild={
                     isEdit && (

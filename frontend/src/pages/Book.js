@@ -28,7 +28,7 @@ const Book = () => {
                 <MyHeader
                     headText="도서 상세"
                     leftChild={<MyButton text={'< 뒤로가기'} onClick={() => navigate(-1)} />}
-                    rightChild={<MyButton text={'기록하기'} type={'positive'} onClick={() => navigate('/new',{state: data})} />}
+                    rightChild={<MyButton text={'기록 작성하기'} type={'positive'} onClick={() => navigate('/new',{state: data})} />}
                 />
                 <article>
                     <section>
