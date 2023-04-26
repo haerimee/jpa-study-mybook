@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-function SearchBar(props) {
+function SearchBar({ onSearch }) {
     const [keyword, setKeyword] = useState("");
 
     function handleSearch(e) {
         e.preventDefault();
-        props.onSearch(keyword);
+        onSearch(keyword);
     }
 
     function handleKeywordChange(e) {

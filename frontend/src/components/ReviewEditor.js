@@ -28,30 +28,35 @@ const ReviewEditor = ({ isEdit, originData, bookInfo }) => {
         if (window.confirm(isEdit ? "기록을 수정하시겠습니까?" : "기록을 작성 완료하시겠습니까?")) {
             if (!isEdit) {
                 let param = {memberId: 1, content: content, score: emotion, book: bookInfo}
-                call("/api/review/new","POST", param)
+                call("/api/review","POST", param)
                     .then((res) => {
-                        //setData(res.items[0])
                         alert('작성이 완료 되었습니다.');
-                        navigate('/', { replace: true });
+                        navigate('/review', { replace: true });
                     });
             } else {
-                //onEdit(originData.id, date, content, emotion);
+                let param = {content: content, score: emotion}
+                call(`/api/review/${originData.id}`,"PUT", param)
+                    .then((res) => {
+                        alert('수정이 완료 되었습니다.');
+                        navigate('/review', { replace: true });
+                    });
             }
         }
-        //navigate('/', { replace: true });
     }
 
     const handleRemove = () => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
-            //onRemove(originData.id);
-            navigate('/', { replace: true });
+            call(`/api/review/${originData.id}`,"DELETE", {})
+                .then((res) => {
+                    alert('삭제 완료 되었습니다.');
+                    navigate('/review', { replace: true });
+                });
         }
     }
 
     useEffect(() => {
         if (isEdit) {
-            //setDate(getStringDate(new Date(parseInt(originData.date))));
-            setEmotion(originData.emotion);
+            setEmotion(originData.score);
             setContent(originData.content);
         }
     }, [isEdit, originData])

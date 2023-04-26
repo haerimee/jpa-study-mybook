@@ -1,42 +1,30 @@
 package com.jpastudy.mybook.domain.review.repository;
 
 import com.jpastudy.mybook.domain.review.domain.Review;
-import com.jpastudy.mybook.domain.review.dto.ReviewDto;
-import com.jpastudy.mybook.domain.review.dto.ReviewSearchDto;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import com.jpastudy.mybook.domain.review.dto.ReviewSearchDetailDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-@Repository
-@RequiredArgsConstructor
-public class ReviewRepository {
+    @Query(value=
+            "select r.review_id, m.member_id, b.book_id, r.content, r.score, b.title, b.isbn, b.image, b.author, r.created_date, r.modified_date"
+            + " from review r"
+            + " join member m on r.member_id = m.member_id "
+            + " join book b on r.book_id = b.book_id "
+            + " where m.member_id = :memberId", nativeQuery = true
+    )
+    Page<Review> findAllByMemberId(Long memberId, Pageable pageable);
 
-    @PersistenceContext
-    private EntityManager em;
-
-    public void save(Review review){
-        em.persist(review);
-    }
-
-    public Review findByReviewId(Long id){
-        return em.find(Review.class, id);
-    }
-
-    public List<ReviewSearchDto> findAllReviewsByMemberId(Long memberId){
-      //String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewDto(r.id, m.id, b.id, r.content, r.score)"
-        String jpql =  "select new com.jpastudy.mybook.domain.review.dto.ReviewSearchDto(r.id, m.id, b.id, r.content, r.score, b.title, b.isbn, b.image)"
-                + " from Review r"
-                + " join r.member m"
-                + " join r.book b"
-                + " where m.id = :member_id";
-        Query query = em.createQuery(jpql, ReviewSearchDto.class);
-        query.setParameter("member_id", memberId);
-
-        return query.getResultList();
-    }
+    @Query(value=
+            "select new com.jpastudy.mybook.domain.review.dto.ReviewSearchDetailDto(r.id, m.id, b.id, r.content, r.score, b.title, b.isbn, b.image, b.author, b.publisher, b.link, r.createdDate, r.modifiedDate)"
+            + " from Review r"
+            + " join r.member m"
+            + " join r.book b"
+            + " where r.id = :reviewId"
+    )
+    ReviewSearchDetailDto findByReviewIdWithBookInfo(Long reviewId);
 
 }

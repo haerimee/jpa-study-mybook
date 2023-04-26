@@ -119,7 +119,9 @@ header button {
 }
 
 .BookList .ControlMenu {
-  margin-right: 10px;
+  /*margin-right: 10px;*/
+  margin-bottom: -10px;
+  margin-left: 15px;
   border: none;
   border-radius: 5px;
   background-color: #ececec;
@@ -131,7 +133,7 @@ header button {
 
   cursor: pointer;
   font-family: "Nanum Gothic";
-  font-size: 18px;
+  font-size: 15px;
 }
 
 /* BookItem */
@@ -189,7 +191,7 @@ header button {
 
 .BookItem .info_wrapper {
   flex-grow: 1;
-  margin-left: 20px;
+  /*margin-left: 20px;*/
   cursor: pointer;
 }
 
@@ -350,26 +352,6 @@ header button {
   object-fit: contain;
 }
 
-.BookPage .diary_img_wrapper_1 {
-  background-color: #64c964;
-}
-
-.BookPage .diary_img_wrapper_2 {
-  background-color: #9dd772;
-}
-
-.BookPage .diary_img_wrapper_3 {
-  background-color: #fdce17;
-}
-
-.BookPage .diary_img_wrapper_4 {
-  background-color: #fd8446;
-}
-
-.BookPage .diary_img_wrapper_5 {
-  background-color: #fd565f;
-}
-
 .BookPage .emotion_descript {
   font-size: 15px;
   color: white;
@@ -405,6 +387,24 @@ header button {
   font-weight: 400;
   line-height: 2.5;
   white-space: pre-wrap;
+}
+
+.BookPage .score_img_wrapper {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15px;
+}
+
+.BookPage .score_img_wrapper img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.BookPage .score_img_wrapper span {
+  font-size: 15px;
 }
 
 /* SearchBar */

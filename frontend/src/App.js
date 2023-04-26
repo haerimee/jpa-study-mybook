@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import New from './pages/New';
 import Book from "./pages/Book";
 import Review from "./pages/Review";
+import Edit from "./pages/Edit";
 
 function App() {
     return (
@@ -16,8 +17,8 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/review' element={<Review />} />
                     <Route path='/new' element={<New />} />
-                    {/*<Route path='/edit/:id' element={<Edit />} />*/}
-                    <Route path='/book/:isbn' element={<Book />} />
+                    <Route path='/edit/:id' element={<Edit />} />
+                    <Route path='/book/:id' element={<Book />} />
                 </Routes>
             </div>
         </BrowserRouter>

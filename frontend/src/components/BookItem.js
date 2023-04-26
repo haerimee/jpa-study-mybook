@@ -1,11 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import MyButton from "./MyButton";
 
-const BookItem = ({ isbn, author, description, image, title, content, score }) => {
+const BookItem = ({ isbn, author, description, image, title, content, score, isReviewPage, id, createdDate }) => {
     const navigate = useNavigate();
     //
     const goDetail = () => {
-        navigate(`/book/${isbn}`);
+        if(!isReviewPage){
+            navigate(`/book/${isbn}`);
+        }else{
+            navigate(`/book/${id}`,{state: isReviewPage});
+        }
     };
 
     return (
@@ -15,7 +20,6 @@ const BookItem = ({ isbn, author, description, image, title, content, score }) =
                 //className={["emotion_img_wrapper", `emotion_img_wrapper_${emotion}`].join(" ")}
                 className="book_img_wrapper"
             >
-                {/*<img src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`} />*/}
                 <img src={image} />
             </div>
             <div
@@ -29,12 +33,19 @@ const BookItem = ({ isbn, author, description, image, title, content, score }) =
                     {author}
                 </div>
                 <div className="diary_content_preview">
-                    {description} {content}
+                    {!isReviewPage ? description : content}
+
                 </div>
+
             </div>
-            <div className="btn_wrapper">
-                {/*<MyButton onClick={goEdit} text={"수정하기"} />*/}
-            </div>
+
+            {
+                isReviewPage &&
+                <div className="btn_wrapper">
+                    <MyButton text={'수정하기'} onClick={() => navigate(`/edit/${id}`)}  />
+                    <p style={{fontSize: "13px", textAlign:"right"}}>{createdDate}</p>
+                </div>
+            }
         </div>
     )
 };
