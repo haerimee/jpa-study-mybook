@@ -26,6 +26,7 @@ public class MemberRepositoryTest {
     @Test
     public void testSave() {
         Member member = new Member();
+        member.setId(1L);
         member.setName("장해림");
         Member savedMember = memberRepository.save(member);
 
@@ -36,7 +37,6 @@ public class MemberRepositoryTest {
     @Test
     public void testFindById() {
         Optional<Member> foundMember = Optional.ofNullable(memberRepository.findById(1L));
-
         foundMember.ifPresent(selectedMember -> {
             System.out.println("============member name: "+selectedMember.getName());
         });
